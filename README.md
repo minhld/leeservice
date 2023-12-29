@@ -2,5 +2,12 @@ Lee Service
 ---
 To test the following features
 - Kafka (partition optimization)
-- Circuit breaker and buckhead
+- Circuit breaker and bulkhead
 - And more
+
+Configure Kafka
+- Download Kafka package from Apache Kafka and follow the instruction https://kafka.apache.org/quickstart
+- Run the Zookeeper 
+  - ```bin/zookeeper-server-start.sh config/zookeeper.properties```
+- Run the Kafka broker 
+  - ```bin/kafka-server-start.sh config/server.properties```

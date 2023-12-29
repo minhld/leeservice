@@ -21,6 +21,7 @@ public class KafkaController {
     @PostMapping(value = "/api/msg",
             consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Message> sendMessage(@RequestBody Message message) {
+        kafkaService.sendMessage(message.getMessage());
         return ResponseEntity.ok(message);
     }
 }
