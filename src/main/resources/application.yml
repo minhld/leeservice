@@ -6,6 +6,11 @@ spring:
     mongodb:
       uri: mongodb+srv://lee38138:Bachkhoa12@lee01.dkroxft.mongodb.net/planb?retryWrites=true&w=majority
 
+  kafka:
+    bootstrap-servers: localhost:9092
+
 springdoc:
   swagger-ui:
-    url: 
+    url:
+
+
