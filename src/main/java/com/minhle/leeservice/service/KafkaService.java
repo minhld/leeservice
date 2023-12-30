@@ -1,5 +1,6 @@
 package com.minhle.leeservice.service;
 
+import com.minhle.leeservice.model.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,18 +19,18 @@ public class KafkaService {
     private String topicName;
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, Message> kafkaTemplate;
 
     @Autowired
-    private ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory;
+    private ConcurrentKafkaListenerContainerFactory<String, Message> kafkaListenerContainerFactory;
 
-    public void sendMessage(String msg) {
-        CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(topicName, msg);
+    public void sendMessage(Message msg) {
+        CompletableFuture<SendResult<String, Message>> future = kafkaTemplate.send(topicName, msg);
         future.whenComplete((result, ex) -> {
             if (ex == null) {
-                log.info("Sent message='{}' with offset={}", msg, result.getRecordMetadata().offset());
+                log.info("Sent message='{}' with offset={}", msg.getMessage(), result.getRecordMetadata().offset());
             } else {
-                log.error("Unable to send message='{}' due to exception {}", msg, ex.getMessage());
+                log.error("Unable to send message='{}' due to exception {}", msg.getMessage(), ex.getMessage());
             }
         });
         kafkaTemplate.send(topicName, msg);
@@ -39,7 +40,7 @@ public class KafkaService {
             topics = "${spring.kafka.topic}",
             groupId = "${spring.kafka.group-id}",
             containerFactory = "kafkaListenerContainerFactory")
-    public void listenWithFilter(String message) {
-        log.info("Received Message '{}' in topic '{}'", message, topicName);
+    public void listenWithFilter(Message msg) {
+        log.info("Received Message '{}' in topic '{}'", msg.getMessage(), topicName);
     }
 }
