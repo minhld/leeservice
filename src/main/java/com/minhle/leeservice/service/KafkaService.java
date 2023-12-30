@@ -39,7 +39,8 @@ public class KafkaService {
     @KafkaListener(
             topics = "${spring.kafka.topic}",
             groupId = "${spring.kafka.group-id}",
-            containerFactory = "kafkaListenerContainerFactory")
+            containerFactory = "kafkaListenerContainerFactory",
+            autoStartup = "false")
     public void listenWithFilter(Message msg) {
         log.info("Received Message '{}' in topic '{}'", msg.getMessage(), topicName);
     }
