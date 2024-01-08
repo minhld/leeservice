@@ -5,6 +5,7 @@ import com.minhle.leeservice.model.Route;
 import com.minhle.leeservice.service.KafkaService;
 import com.minhle.leeservice.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@ConditionalOnProperty(value = "spring.kafka.enabled", matchIfMissing = true)
 public class KafkaController {
     @Autowired
     KafkaService kafkaService;
