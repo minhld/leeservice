@@ -22,4 +22,9 @@ public class MainController {
         List<Route> routes = mainService.getRoutes();
         return ResponseEntity.ok(routes);
     }
+
+    public ResponseEntity<Route> getRoute(@RequestBody Integer routeNo) {
+        Route route = mainService.getRoutes().get(0);
+        return ResponseEntity.ok(route);
+    }
 }
