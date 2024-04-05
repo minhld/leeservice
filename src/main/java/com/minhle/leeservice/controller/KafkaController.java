@@ -1,9 +1,7 @@
 package com.minhle.leeservice.controller;
 
 import com.minhle.leeservice.model.Message;
-import com.minhle.leeservice.model.Route;
 import com.minhle.leeservice.service.KafkaService;
-import com.minhle.leeservice.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.MediaType;
