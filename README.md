@@ -3,6 +3,7 @@ Lee Service
 To test the following features
 - Kafka (partition optimization)
 - Circuit breaker and bulkhead
+- Integrating with Jacoco
 - And more
 
 Configure Kafka
