@@ -4,7 +4,7 @@ To test the following features
 - Kafka (partition optimization)
 - Circuit breaker and bulkhead
 - Integrating with Jacoco
-- Integrating with Cosmos DB
+- Integrating & optimizing with Cosmos DB
 - And more
 
 Configure Kafka
