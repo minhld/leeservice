@@ -3,8 +3,9 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   data:
-    mongodb:
-      uri: mongodb+srv://lee38138:Bachkhoa12@lee01.dkroxft.mongodb.net/planb?retryWrites=true&w=majority
+    # mongodb:
+    #  uri: mongodb+srv://lee38138:Bachkhoa12@lee01.dkroxft.mongodb.net/planb?retryWrites=true&w=majority
+
 
   kafka:
     enabled: false
