@@ -12,7 +12,7 @@ public class SwaggerConfig {
         return GroupedOpenApi.builder()
                 .group("lee-services")
                 .pathsToMatch("/api/**")
-                .displayName("Lee Service APIs")
+                .displayName("Lee Services")
                 .build();
     }
 }
