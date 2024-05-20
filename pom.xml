@@ -19,6 +19,7 @@
 		<springfox.version>3.0.0</springfox.version>
 		<resilience4j.version>2.2.0</resilience4j.version>
 		<logback.version>1.5.3</logback.version>
+		<kafka.version>3.7.0</kafka.version>
 	</properties>
 
 	<dependencies>
@@ -54,6 +55,17 @@
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<!-- kafka stream -->
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-streams</artifactId>
+			<version>3.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>3.4.0</version>
 		</dependency>
 		<!-- test libs for kafka -->
 		<dependency>
