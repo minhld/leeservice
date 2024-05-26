@@ -5,7 +5,7 @@ To test the following features
 - Circuit breaker and bulkhead
 - Integrating with Jacoco
 - Integrating & optimizing with Cosmos DB
-- And more
+- Add Coverage to 90%
 
 Configure Kafka
 - Download Kafka package from Apache Kafka and follow the instruction https://kafka.apache.org/quickstart
