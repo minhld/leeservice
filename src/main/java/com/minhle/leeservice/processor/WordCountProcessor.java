@@ -17,6 +17,8 @@ public class WordCountProcessor {
     private String inputTopic;
     @Value(value = "${spring.kafka.output-topic}")
     private String outputTopic;
+    @Value(value = "${spring.kafka.streams.table-name}")
+    private String streamTableName;
 
     @Autowired
     void buildPipeline(StreamsBuilder streamsBuilder) {
@@ -27,7 +29,7 @@ public class WordCountProcessor {
                 .mapValues((ValueMapper<String, String>) String::toLowerCase)
                 .flatMapValues(value -> Arrays.asList(value.split("\\W+")))
                 .groupBy((key, word) -> word, Grouped.with(STRING_SERDE, STRING_SERDE))
-                .count(Materialized.as("counts"));
+                .count(Materialized.as(streamTableName));
 
         wordCounts.toStream().to(outputTopic);
     }
