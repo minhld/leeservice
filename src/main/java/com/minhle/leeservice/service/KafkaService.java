@@ -36,6 +36,8 @@ public class KafkaService {
         kafkaTemplate.send(topicName, msg);
     }
 
+
+
     @KafkaListener(
             topics = "${spring.kafka.topic}",
             groupId = "${spring.kafka.group-id}",
