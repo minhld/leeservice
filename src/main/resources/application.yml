@@ -8,10 +8,13 @@ spring:
 
 
   kafka:
-    enabled: false
+    enabled: true
     bootstrap-servers: localhost:9092
     topic: user-messages
     group-id: minhle
+    streams:
+      state:
+        dir:
 
 springdoc:
   swagger-ui:
