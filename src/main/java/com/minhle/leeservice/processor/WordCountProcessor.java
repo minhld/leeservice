@@ -26,7 +26,7 @@ public class WordCountProcessor {
     private String streamTableName;
 
     @Autowired
-    void buildPipeline(StreamsBuilder streamsBuilder) {
+    void buildTopology(StreamsBuilder streamsBuilder) {
         KStream<String, String> messageStream = streamsBuilder
                 .stream(inputTopic, Consumed.with(STRING_SERDE, STRING_SERDE));
 
