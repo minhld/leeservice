@@ -11,11 +11,13 @@ import org.apache.kafka.streams.kstream.Materialized;
 import org.apache.kafka.streams.kstream.ValueMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
 @Component
+@ConditionalOnProperty(value = "spring.kafka.enabled", matchIfMissing = true)
 public class WordCountProcessor {
     private static final Serde<String> STRING_SERDE = Serdes.String();
     @Value(value = "${spring.kafka.topic}")

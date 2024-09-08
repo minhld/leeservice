@@ -8,6 +8,7 @@ import org.apache.kafka.streams.state.QueryableStoreTypes;
 import org.apache.kafka.streams.state.ReadOnlyKeyValueStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.StreamsBuilderFactoryBean;
@@ -19,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 
 @Service
 @Slf4j
+@ConditionalOnProperty(value = "spring.kafka.enabled", matchIfMissing = true)
 public class KafkaService {
     @Value(value = "${spring.kafka.topic}")
     private String topicName;
