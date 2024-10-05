@@ -8,7 +8,7 @@ spring:
 
 
   kafka:
-    enabled: false
+    enabled: true
     bootstrap-servers: localhost:9092
     group-id: minhle
     topic: user-messages
