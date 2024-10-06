@@ -39,7 +39,7 @@ public class KafkaConsumerConfig {
     public ConcurrentKafkaListenerContainerFactory<String, Message> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, Message> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
-//        factory.setRecordFilterStrategy(record -> record.value().getMessage().contains("Hello"));
+        factory.setRecordFilterStrategy(record -> record.value().getMessage().contains("Hello"));
         return factory;
     }
 }

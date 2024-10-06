@@ -39,7 +39,6 @@ public class KafkaConfig {
         return new NewTopic(topicName, 1, (short) 1);
     }
 
-    /*
     @Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
     KafkaStreamsConfiguration kStreamsConfig() {
         Map<String, Object> props = new HashMap<>();
@@ -51,6 +50,5 @@ public class KafkaConfig {
         props.put(StreamsConfig.STATE_DIR_CONFIG, stateStoreLocation);
         return new KafkaStreamsConfiguration(props);
     }
-    */
 
 }

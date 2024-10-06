@@ -33,8 +33,8 @@ public class KafkaService {
     @Autowired
     private ConcurrentKafkaListenerContainerFactory<String, Message> kafkaListenerContainerFactory;
 
-//    @Autowired
-//    private StreamsBuilderFactoryBean factoryBean;
+    @Autowired
+    private StreamsBuilderFactoryBean factoryBean;
 
     public void sendMessage(Message msg) {
         CompletableFuture<SendResult<String, Message>> future = kafkaTemplate.send(topicName, msg);
@@ -58,11 +58,11 @@ public class KafkaService {
     }
 
     public Long getMessage(String word) {
-//        KafkaStreams kafkaStreams = factoryBean.getKafkaStreams();
-//        assert kafkaStreams != null;
-//        ReadOnlyKeyValueStore<String, Long> counts = kafkaStreams
-//                .store(StoreQueryParameters.fromNameAndType(streamTableName, QueryableStoreTypes.keyValueStore()));
-//        return counts.get(word);
-        return 0L;
+        KafkaStreams kafkaStreams = factoryBean.getKafkaStreams();
+        assert kafkaStreams != null;
+        ReadOnlyKeyValueStore<String, Long> counts = kafkaStreams
+                .store(StoreQueryParameters.fromNameAndType(streamTableName, QueryableStoreTypes.keyValueStore()));
+        return counts.get(word);
+
     }
 }
