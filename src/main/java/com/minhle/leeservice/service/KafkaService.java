@@ -1,5 +1,6 @@
 package com.minhle.leeservice.service;
 
+import com.minhle.leeservice.model.Employee;
 import com.minhle.leeservice.model.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.streams.KafkaStreams;
@@ -14,6 +15,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.StreamsBuilderFactoryBean;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CompletableFuture;
@@ -28,7 +30,7 @@ public class KafkaService {
     private String streamTableName;
 
     @Autowired
-    private KafkaTemplate<String, Message> kafkaTemplate;
+    private KafkaTemplate<String, Employee> kafkaTemplate;
 
     @Autowired
     private ConcurrentKafkaListenerContainerFactory<String, Message> kafkaListenerContainerFactory;
@@ -36,16 +38,33 @@ public class KafkaService {
     @Autowired
     private StreamsBuilderFactoryBean factoryBean;
 
+//    @Autowired
+//    private Processor processor;
+
     public void sendMessage(Message msg) {
-        CompletableFuture<SendResult<String, Message>> future = kafkaTemplate.send(topicName, msg);
+//        CompletableFuture<SendResult<String, Message>> future = kafkaTemplate.send(topicName, msg);
+//        future.whenComplete((result, ex) -> {
+//            if (ex == null) {
+//                log.info("Sent message='{}' with offset={}", msg.getMessage(), result.getRecordMetadata().offset());
+//            } else {
+//                log.error("Unable to send message='{}' due to exception {}", msg.getMessage(), ex.getMessage());
+//            }
+//        });
+//        kafkaTemplate.send(topicName, msg);
+    }
+
+    public void updateEmployee(Employee employee) {
+        org.springframework.messaging.Message<Employee> message = MessageBuilder.withPayload(employee).build();
+//        processor.output().send(message);
+        CompletableFuture<SendResult<String, Employee>> future = kafkaTemplate.send(topicName, employee);
         future.whenComplete((result, ex) -> {
             if (ex == null) {
-                log.info("Sent message='{}' with offset={}", msg.getMessage(), result.getRecordMetadata().offset());
+                log.info("Sent message='{}' with offset={}", employee.getId(), result.getRecordMetadata().offset());
             } else {
-                log.error("Unable to send message='{}' due to exception {}", msg.getMessage(), ex.getMessage());
+                log.error("Unable to send message='{}' due to exception {}", employee.getId(), ex.getMessage());
             }
         });
-        kafkaTemplate.send(topicName, msg);
+        kafkaTemplate.send(topicName, employee);
     }
 
     @KafkaListener(

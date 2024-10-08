@@ -1,5 +1,6 @@
 package com.minhle.leeservice.controller;
 
+import com.minhle.leeservice.model.Employee;
 import com.minhle.leeservice.model.Message;
 import com.minhle.leeservice.service.KafkaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,13 @@ public class KafkaController {
     public ResponseEntity<Message> sendMessage(@RequestBody Message message) {
         kafkaService.sendMessage(message);
         return ResponseEntity.ok(message);
+    }
+
+    @PostMapping(value = "/api/employee",
+            consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Employee> sendMessage(@RequestBody Employee employee) {
+        kafkaService.updateEmployee(employee);
+        return ResponseEntity.ok(employee);
     }
 
     @GetMapping(value = "/api/message/{message}")
