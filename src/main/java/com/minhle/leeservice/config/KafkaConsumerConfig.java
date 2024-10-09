@@ -1,5 +1,6 @@
 package com.minhle.leeservice.config;
 
+import com.minhle.leeservice.kafka.avro.AvroDeserializer;
 import com.minhle.leeservice.model.Message;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -29,7 +30,7 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaGroupId);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, AvroDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(props,
                 new StringDeserializer(),
                 new JsonDeserializer<>(Message.class));

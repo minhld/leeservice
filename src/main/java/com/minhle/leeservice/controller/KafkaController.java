@@ -2,6 +2,7 @@ package com.minhle.leeservice.controller;
 
 import com.minhle.leeservice.model.Employee;
 import com.minhle.leeservice.model.Message;
+import com.minhle.leeservice.model.request.EmployeeRequest;
 import com.minhle.leeservice.service.KafkaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -24,7 +25,12 @@ public class KafkaController {
 
     @PostMapping(value = "/api/employee",
             consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Employee> sendMessage(@RequestBody Employee employee) {
+    public ResponseEntity<Employee> sendMessage(@RequestBody EmployeeRequest employeeRequest) {
+        Employee employee = Employee.newBuilder()
+                .setId(employeeRequest.getId())
+                .setFirstName(employeeRequest.getFirstName())
+                .setLastName(employeeRequest.getLastName())
+                .build();
         kafkaService.updateEmployee(employee);
         return ResponseEntity.ok(employee);
     }

@@ -6,20 +6,17 @@ spring:
     # mongodb:
     #  uri: mongodb+srv://lee38138:Bachkhoa12@lee01.dkroxft.mongodb.net/planb?retryWrites=true&w=majority
 
-
   kafka:
     enabled: true
     bootstrap-servers: localhost:9092
-    group-id: minhle
-    topic: user-messages
-    output-topic: out-user-messages
+    group-id: minh-group
+    topic: user-message-topic
+    output-topic: output-user-message-topic
     streams:
-      table-name: counts
+      table-name: count-table
       state:
         dir: /tmp/kafka
 
 springdoc:
   swagger-ui:
     url:
-
-

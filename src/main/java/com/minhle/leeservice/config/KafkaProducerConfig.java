@@ -1,5 +1,6 @@
 package com.minhle.leeservice.config;
 
+import com.minhle.leeservice.kafka.avro.AvroSerializer;
 import com.minhle.leeservice.model.Employee;
 import com.minhle.leeservice.model.Message;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -27,7 +28,7 @@ public class KafkaProducerConfig {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, AvroSerializer.class);
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
