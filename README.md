@@ -13,3 +13,7 @@ Configure Kafka
   - ```bin/zookeeper-server-start.sh config/zookeeper.properties```
 - Run the Kafka broker 
   - ```bin/kafka-server-start.sh config/server.properties```
+- Reset index
+  - ```bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group minh-group --topic user-message-topic --execute --reset-offsets --to-earliest```
+- Delete topic
+  - ```bin/kafka-topics.sh --delete --bootstrap-server localhost:9092 --topic user-message-topic```

@@ -1,7 +1,6 @@
 package com.minhle.leeservice.service;
 
 import com.minhle.leeservice.model.Employee;
-import com.minhle.leeservice.model.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StoreQueryParameters;
@@ -15,6 +14,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.StreamsBuilderFactoryBean;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
@@ -33,29 +33,13 @@ public class KafkaService {
     private KafkaTemplate<String, Employee> kafkaTemplate;
 
     @Autowired
-    private ConcurrentKafkaListenerContainerFactory<String, Message> kafkaListenerContainerFactory;
+    private ConcurrentKafkaListenerContainerFactory<String, Employee> kafkaListenerContainerFactory;
 
     @Autowired
     private StreamsBuilderFactoryBean factoryBean;
 
-//    @Autowired
-//    private Processor processor;
-
-    public void sendMessage(Message msg) {
-//        CompletableFuture<SendResult<String, Message>> future = kafkaTemplate.send(topicName, msg);
-//        future.whenComplete((result, ex) -> {
-//            if (ex == null) {
-//                log.info("Sent message='{}' with offset={}", msg.getMessage(), result.getRecordMetadata().offset());
-//            } else {
-//                log.error("Unable to send message='{}' due to exception {}", msg.getMessage(), ex.getMessage());
-//            }
-//        });
-//        kafkaTemplate.send(topicName, msg);
-    }
-
     public void updateEmployee(Employee employee) {
-        org.springframework.messaging.Message<Employee> message = MessageBuilder.withPayload(employee).build();
-//        processor.output().send(message);
+        Message<Employee> message = MessageBuilder.withPayload(employee).build();
         CompletableFuture<SendResult<String, Employee>> future = kafkaTemplate.send(topicName, employee);
         future.whenComplete((result, ex) -> {
             if (ex == null) {
@@ -72,8 +56,8 @@ public class KafkaService {
             groupId = "${spring.kafka.group-id}",
             containerFactory = "kafkaListenerContainerFactory",
             autoStartup = "true")
-    public void listener(Message msg) {
-        log.info("Received Message '{}' in topic '{}'", msg.getMessage(), topicName);
+    public void listener(Employee employee) {
+        log.info("Received Message '{}' in topic '{}'", employee.getFirstName(), topicName);
     }
 
     public Long getMessage(String word) {

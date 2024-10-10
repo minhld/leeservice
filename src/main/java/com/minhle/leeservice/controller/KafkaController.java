@@ -19,20 +19,20 @@ public class KafkaController {
     @PostMapping(value = "/api/message",
             consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Message> sendMessage(@RequestBody Message message) {
-        kafkaService.sendMessage(message);
+        // kafkaService.sendMessage(message);
         return ResponseEntity.ok(message);
     }
 
     @PostMapping(value = "/api/employee",
             consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Employee> sendMessage(@RequestBody EmployeeRequest employeeRequest) {
+    public ResponseEntity<EmployeeRequest> sendMessage(@RequestBody EmployeeRequest employeeRequest) {
         Employee employee = Employee.newBuilder()
                 .setId(employeeRequest.getId())
                 .setFirstName(employeeRequest.getFirstName())
                 .setLastName(employeeRequest.getLastName())
                 .build();
         kafkaService.updateEmployee(employee);
-        return ResponseEntity.ok(employee);
+        return ResponseEntity.ok(employeeRequest);
     }
 
     @GetMapping(value = "/api/message/{message}")

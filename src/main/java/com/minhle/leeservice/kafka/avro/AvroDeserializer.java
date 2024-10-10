@@ -1,35 +1,32 @@
 package com.minhle.leeservice.kafka.avro;
 
+import com.minhle.leeservice.model.Employee;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.io.DatumReader;
 import org.apache.avro.io.Decoder;
 import org.apache.avro.io.DecoderFactory;
 import org.apache.avro.specific.SpecificDatumReader;
-import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.kafka.common.serialization.Deserializer;
 
 import java.io.IOException;
 
 @Slf4j
-public class AvroDeserializer<T extends SpecificRecordBase> implements Deserializer<T> {
-    protected final Class<T> targetType;
-
-    public AvroDeserializer(Class<T> targetType) {
-        this.targetType = targetType;
-    }
+@NoArgsConstructor
+public class AvroDeserializer implements Deserializer<Employee> {
 
     @Override
-    public T deserialize(String topic, byte[] bytes) {
-        T returnObject = null;
+    public Employee deserialize(String topic, byte[] bytes) {
+        Employee returnObject = null;
         try {
             if (bytes != null) {
-                DatumReader<GenericRecord> datumReader = new SpecificDatumReader<>(targetType.newInstance().getSchema());
+                DatumReader<GenericRecord> datumReader = new SpecificDatumReader<>(Employee.getClassSchema());
                 Decoder decoder = DecoderFactory.get().binaryDecoder(bytes, null);
-                returnObject = (T) datumReader.read(null, decoder);
+                returnObject = (Employee) datumReader.read(null, decoder);
                 log.info("deserialized data='{}'", returnObject.toString());
             }
-        } catch (IOException | InstantiationException | IllegalAccessException e) {
+        } catch (IOException e) {
             log.error("Unable to Deserialize bytes[] ", e);
         }
         return returnObject;
