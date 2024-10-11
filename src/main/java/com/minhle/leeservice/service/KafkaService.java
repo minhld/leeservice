@@ -39,7 +39,6 @@ public class KafkaService {
     private StreamsBuilderFactoryBean factoryBean;
 
     public void updateEmployee(Employee employee) {
-        Message<Employee> message = MessageBuilder.withPayload(employee).build();
         CompletableFuture<SendResult<String, Employee>> future = kafkaTemplate.send(topicName, employee);
         future.whenComplete((result, ex) -> {
             if (ex == null) {
@@ -48,7 +47,6 @@ public class KafkaService {
                 log.error("Unable to send message='{}' due to exception {}", employee.getId(), ex.getMessage());
             }
         });
-        kafkaTemplate.send(topicName, employee);
     }
 
     @KafkaListener(
