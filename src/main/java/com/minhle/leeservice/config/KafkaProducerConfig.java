@@ -25,8 +25,6 @@ import java.util.Map;
 public class KafkaProducerConfig {
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
-    @Value("${spring.kafka.producer.properties.schema.registry.url}")
-    private String schemaRegistryUrl;
 
     @Bean
     public ProducerFactory<String, Employee> producerFactory() {
@@ -42,10 +40,4 @@ public class KafkaProducerConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    @Bean
-    public SchemaRegistryClient schemaRegistryClient() {
-        ConfluentSchemaRegistryClient client = new ConfluentSchemaRegistryClient();
-        client.setEndpoint(schemaRegistryUrl);
-        return client;
-    }
 }
