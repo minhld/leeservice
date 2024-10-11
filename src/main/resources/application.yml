@@ -16,6 +16,9 @@ spring:
       table-name: count-table
       state:
         dir: /tmp/kafka
+    producer:
+      properties:
+        schema.registry.url: http://localhost:8081
 
 springdoc:
   swagger-ui:
