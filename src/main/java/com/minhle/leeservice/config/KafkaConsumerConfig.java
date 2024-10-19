@@ -24,6 +24,8 @@ public class KafkaConsumerConfig {
     private String bootstrapAddress;
     @Value(value = "${spring.kafka.group-id}")
     private String kafkaGroupId;
+    @Value("${spring.kafka.producer.properties.schema.registry.url}")
+    private String schemaRegistryUrl;
 
     @Bean
     public ConsumerFactory<String, Employee> consumerFactory() {
@@ -32,7 +34,7 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaGroupId);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
-        props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+        props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
         return new DefaultKafkaConsumerFactory<>(props);
     }
 
