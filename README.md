@@ -17,3 +17,6 @@ Configure Kafka
   - ```bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group minh-group --topic user-message-topic --execute --reset-offsets --to-earliest```
 - Delete topic
   - ```bin/kafka-topics.sh --delete --bootstrap-server localhost:9092 --topic user-message-topic```
+- To start Schema Registry
+  - Download Confluence package
+  - ```bin/confluent local services start```
