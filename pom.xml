@@ -33,6 +33,7 @@
 	</repositories>
 
 	<dependencies>
+		<!-- framework -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -42,12 +43,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!--
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
-		-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -66,7 +61,6 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
-
 		<!-- kafka stream -->
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
@@ -78,7 +72,6 @@
 			<artifactId>kafka-clients</artifactId>
 			<version>${kafka.version}</version>
 		</dependency>
-
 		<!-- avro schema -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -108,7 +101,6 @@
 			<version>${spring-cloud-stream.version}</version>
 			<type>pom</type>
 		</dependency>
-
 		<!-- test libs for kafka -->
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
@@ -122,7 +114,7 @@
 			<version>1.19.7</version>
 			<scope>test</scope>
 		</dependency>
-
+		<!-- swagger -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -133,6 +125,7 @@
 			<artifactId>swagger-annotations</artifactId>
 			<version>2.2.19</version>
 		</dependency>
+		<!-- annotations -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -144,6 +137,7 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.15.4</version>
 		</dependency>
+		<!-- resiliency -->
 		<dependency>
 			<groupId>io.github.resilience4j</groupId>
 			<artifactId>resilience4j-circuitbreaker</artifactId>
@@ -159,6 +153,7 @@
 			<artifactId>resilience4j-bulkhead</artifactId>
 			<version>${resilience4j.version}</version>
 		</dependency>
+		<!-- logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -179,16 +174,25 @@
 			<artifactId>logstash-logback-encoder</artifactId>
 			<version>7.4</version>
 		</dependency>
+		<!-- database -->
 		<dependency>
 			<groupId>com.datastax.cassandra</groupId>
 			<artifactId>cassandra-driver-core</artifactId>
 			<version>4.0.0</version>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>com.microsoft.azure</groupId>
 			<artifactId>spring-data-cosmosdb</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+		-->
+		<!--
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		-->
 	</dependencies>
 
 	<build>
