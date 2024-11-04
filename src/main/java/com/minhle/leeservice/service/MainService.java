@@ -13,6 +13,7 @@ import java.util.List;
 public class MainService {
 
     public void addRecords(List<EmployeeRequest> employeeRequests) {
+        employeeRequests.forEach(e -> {});
         return;
     }
 
