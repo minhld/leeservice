@@ -14,7 +14,6 @@ public class MainService {
 
     public void addRecords(List<EmployeeRequest> employeeRequests) {
         employeeRequests.forEach(e -> {});
-        return;
     }
 
     public List<Employee> getRecord(Integer employeeId) {
