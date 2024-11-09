@@ -1,0 +1,29 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  data:
+    cassandra:
+      cluster: localhost
+      port: 9042
+
+    # mongodb:
+    #  uri: mongodb+srv://lee38138:Bachkhoa12@lee01.dkroxft.mongodb.net/planb?retryWrites=true&w=majority
+
+  kafka:
+    enabled: true
+    bootstrap-servers: localhost:9092
+    group-id: minh-group
+    topic: user-message-topic
+    output-topic: output-user-message-topic
+    streams:
+      table-name: count-table
+      state:
+        dir: /tmp/kafka
+    producer:
+      properties:
+        schema.registry.url: http://localhost:8081
+
+springdoc:
+  swagger-ui:
+    url:
