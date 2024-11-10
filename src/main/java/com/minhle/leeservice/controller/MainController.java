@@ -1,7 +1,6 @@
 package com.minhle.leeservice.controller;
 
 import com.minhle.leeservice.model.Employee;
-import com.minhle.leeservice.model.Route;
 import com.minhle.leeservice.model.request.EmployeeRequest;
 import com.minhle.leeservice.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
