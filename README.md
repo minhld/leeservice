@@ -8,6 +8,7 @@ To test the following features
 - Add Coverage to 90%
 
 Configure Cassandra
+- Using local cassandra
 
 Configure Kafka
 - Download Kafka package from Apache Kafka and follow the instruction https://kafka.apache.org/quickstart
